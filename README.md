@@ -215,9 +215,26 @@ simulation = TokenSimulation(custom_token_class=CustomToken)
 Update settings dynamically:
 python simulation.update_settings(new_config_json)
 
-## 📄 License
-This project is released under the MIT License.
 
+## 🙏 **Credits**
+
+This project was created by **Ryan Webber (DusX)**  
+Toronto-based multimedia programmer, creative technologist, and member of the TroikaTronix development team.
+
+You are free to use, modify, and build upon this project.  
+If you do, **please include attribution**:
+
+**Credit:**  
+_“Includes code or assets by Ryan Webber (DusX)”_  
+https://dusxproductions.com
+
+### 📄 License
+This project uses a **dual-license model**:
+
+- **Code:** MIT License — free to use commercially or non-commercially with attribution  
+- **Media, documentation & artistic assets:** Creative Commons Attribution 4.0 (CC-BY 4.0)
+
+See the included `LICENSE.txt` for full details.
 
 
 ## Configuration Reference
