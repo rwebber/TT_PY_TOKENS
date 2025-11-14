@@ -216,34 +216,12 @@ Update settings dynamically:
 python simulation.update_settings(new_config_json)
 
 
-## 🙏 **Credits**
-
-This project was created by **Ryan Webber (DusX)**  
-Toronto-based multimedia programmer, creative technologist, and member of the TroikaTronix development team.
-
-You are free to use, modify, and build upon this project.  
-If you do, **please include attribution**:
-
-**Credit:**  
-_“Includes code or assets by Ryan Webber (DusX)”_  
-https://dusxproductions.com
-
-### 📄 License
-This project uses a **dual-license model**:
-
-- **Code:** MIT License — free to use commercially or non-commercially with attribution  
-- **Media, documentation & artistic assets:** Creative Commons Attribution 4.0 (CC-BY 4.0)
-
-See the included `LICENSE.txt` for full details.
-
-
 ## Configuration Reference
 
 If you are looking for the full list of configurable settings and their explanations, see:
 - python_modules/CONFIGURATION.md
 
 This document describes every setting in python_modules/config.json, visual elements, Isadora/Spout output options, and runtime update behavior.
-
 
 
 ## 🧭 Roadmap (Next Steps)
@@ -305,3 +283,39 @@ Quality gates
 - Config Audit remains accurate; overlay mini-summary of unknown/missing maintained.
 - New features are configuration-gated with sensible defaults.
 - README, CONFIGURATION.md, and overview.md remain consistent after changes.
+
+
+## 🙏 **Credits**
+
+This project was created by **Ryan Webber (DusX)**  
+Toronto-based multimedia programmer, creative technologist, and member of the TroikaTronix development team.
+
+You are free to use, modify, and build upon this project.  
+If you do, **please include attribution**:
+
+**Credit:**  
+_“Includes code or assets by Ryan Webber (DusX)”_  
+https://dusxproductions.com
+
+### 📄 License
+This project uses a **dual-license model**:
+
+- **Code:** MIT License — free to use commercially or non-commercially with attribution  
+- **Media, documentation & artistic assets:** Creative Commons Attribution 4.0 (CC-BY 4.0)
+
+See the included `LICENSE.txt` for full details.
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE.txt)
+[![CC BY 4.0](https://img.shields.io/badge/License-CC--BY--4.0-blue?style=for-the-badge)](https://creativecommons.org/licenses/by/4.0/)
+
+[![Author](https://img.shields.io/badge/Author-Ryan%20Webber%20(DusX)-lightgrey?style=for-the-badge)](https://dusxproductions.com)
+
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows)
+![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple)
+
+![Creative Coding](https://img.shields.io/badge/Creative%20Coding-purple?style=for-the-badge)
+![Isadora](https://img.shields.io/badge/TroikaTronix-Isadora-8e44ad?style=for-the-badge)
+
+![Pythoner](https://img.shields.io/badge/Pythoner-Compatible-306998?style=for-the-badge&logo=python)
+![OSC](https://img.shields.io/badge/OSC-Enabled-ff9900?style=for-the-badge)
+![Sidecar](https://img.shields.io/badge/Sidecar-App%20Ready-444444?style=for-the-badge)
