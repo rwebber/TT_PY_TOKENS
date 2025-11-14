@@ -1,0 +1,29 @@
+# Ignore personal IDE config files
+.idea/
+
+# Ignore file types
+*.izz
+*.png
+
+# Ignore directories
+/HIDE
+/DEV DOCS/
+/virtual_env/
+
+# Ignore log file - created by Pycharm
+/log.txt
+
+# Python build and cache artifacts
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# Logs anywhere in the repo
+log.txt
+**/log.txt
+*.log
+**/*.log
+
+# Platform-specific
+.DS_Store
+Thumbs.db

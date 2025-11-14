@@ -1,0 +1,8 @@
+# Created with Pythoner running Python version 3.10.9
+# Created on platform Windows 10
+# Timestamp: 2025-05-29 17:06:03
+numpy==2.2.6
+opencv-python==4.11.0.86
+pygame==2.6.1
+PyOpenGL==3.1.9
+SpoutGL==0.1.1

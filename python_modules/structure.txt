@@ -1,0 +1,397 @@
+TECHNICAL IMPLEMENTATION DETAILS
+
+=====================
+PROJECT INTRODUCTION
+=====================
+The Token Simulation Framework is designed as a real-time interactive visualization system
+that demonstrates advanced programming concepts through practical implementation. It serves
+multiple purposes:
+- Educational tool for learning object-oriented design
+- Platform for experimenting with physics simulations
+- Framework for creating interactive visual experiences
+- Integration example with professional tools like Isadora
+
+Key Design Principles (updated):
+1. Modularity: Each component is self-contained with clear responsibilities
+2. Extensibility: Core classes support inheritance and behavior customization
+3. Real-time Performance: Optimized for interactive visualization
+4. Configuration-driven: Runtime-adjustable behavior through JSON settings
+
++-----------------+
+| CORE COMPONENTS |
++-----------------+
+The system is built around a central simulation controller that manages individual
+token instances through specialized subsystems. This architecture enables:
+- Clean separation of concerns
+- Efficient resource management
+- Simple integration of new features
+- Clear data flow paths
+
+[TokenSimulation]--controls-->[Token Instances]
+         |                         |
+         |                         |
+    manages                    contains
+         |                         |
+    [Subsystems]              [Properties]
+    - TokenFactory            - Position/Velocity
+    - RespawnManager         - Visual State
+    - SettingsManager        - Physics State
+    - Renderer               - Debug State
+
+Additional notes:
+- TokenSimulation serves as the central controller
+- Token instances maintain their own state and behavior
+- Factory pattern used for token creation and management
+- Settings management handles real-time configuration updates
+
++-------------------+
+| DATA FLOW LAYERS |
++-------------------+
+The three-layer architecture ensures clean separation between input handling,
+processing, and output generation. This design:
+- Minimizes coupling between components
+- Simplifies debugging and testing
+- Enables easy modification of input/output methods
+- Supports multiple rendering backends
+
+
+1. Input Layer
+   [Mouse Position]---→[Image Input]---→[Config Updates]
+           |               |                   |
+           v               v                   v
+2. Processing Layer
+   [Physics]------→[State Updates]---→[Visual Updates]
+           |               |                   |
+           v               v                   v
+3. Output Layer
+   [OpenGL]-------→[Spout Output]----→[Debug Overlay]
+
+Key Updates:
+- Input Layer also handles JSON configuration updates
+- Processing Layer includes flocking behavior calculations
+- Output Layer supports both OpenGL and Spout rendering
+
++------------------+
+| RUNTIME PIPELINE |
++------------------+
+The simulation lifecycle is carefully managed to ensure consistent behavior
+and proper resource handling. Each phase serves a specific purpose:
+
+1. Initialization:
+   - Loads and validates configuration
+   - Prepares rendering context
+   - Creates initial token population
+   
+2. Main Loop:
+   - Maintains consistent update frequency
+   - Processes all input sources
+   - Updates physics and visual state
+   - Generates frame output
+   
+3. Cleanup:
+   - Ensures proper resource deallocation
+   - Saves necessary state
+   - Shuts down subsystems in correct order
+
+1. Initialization
+   Config Loading → Resource Setup → Token Creation
+
+2. Main Loop:
+   - 60 FPS target
+   - Mouse position tracking
+   - Physics updates
+   - Visual state updates
+   - OpenGL/Spout rendering
+
+3. Cleanup
+   Resource Release → Memory Cleanup → Context Shutdown
+
++-------------------+
+| CORE SUBSYSTEMS  |
++-------------------+
+[TokenFactory]
+- Grid Layout Generation
+- Token Instance Creation
+- Position Management
+
+[RespawnManager]
+- Death Detection
+- Respawn Timing
+- State Reset
+
+[SettingsManager]
+- Configuration Loading
+- Runtime Updates
+- State Validation
+
+[Renderer]
+- Surface Management
+- OpenGL Integration
+- Spout Output
+
++----------------+
+| TOKEN STATES   |
++----------------+
+[Active]
+- Moving
+- Interacting
+- Rendering
+
+[Dead]
+- Cleanup
+- Resource Release
+- Respawn Queue
+
+[Respawning]
+- Position Reset
+- State Reset
+- Fade In
+
++-----------------+
+| TOKEN BEHAVIORS |
++-----------------+
+Core Mechanics:
+1. Movement & Physics
+   - Vector-based position and velocity
+   - Elastic collisions (circle or rectangle)
+   - Mouse force field interaction
+   - Home-seeking behavior
+
+2. Flocking (Boids Algorithm)
+   - Alignment (0.4)
+   - Cohesion (0.01)
+   - Separation (1.15)
+   - Configurable radius (149.6)
+
+3. Visual Features
+   - Custom image support
+   - Rotation handling
+   - Scale animation
+   - Fade effects
+   - Debug overlays
+
+[Physics]
+- Velocity Updates
+- Force Application
+- Collision Response
+
+[Flocking]
+- Neighbor Detection
+- Rule Processing
+- Force Integration
+
+[Mouse Response]
+- Distance Calculation
+- Force Application
+- Visual Updates
+
++------------------+
+| THREADING MODEL  |
++------------------+
+[Main Thread]
+- OpenGL Context
+- Event Processing
+- State Updates
+
+[Physics Thread]*
+- Collision Detection
+- Force Calculations
+
+[Resource Thread]*
+- Asset Loading
+- Config Processing
+
+*Optional/Future Extension
+
++-------------------+
+| EXTENSION POINTS  |
++-------------------+
+[Custom Token]
+- Visual Override
+- Physics Override
+- Behavior Override
+
+[Custom Renderer]
+- Surface Generation
+- Effect Processing
+- Output Handling
+
+[Custom Physics]
+- Force System
+- Collision System
+- Movement System
+
++-------------------+
+| CONFIGURATION     |
++-------------------+
+[Runtime Settings]
+- Physics Parameters
+- Visual Properties
+- Debug Options
+
+[Performance Settings]
+- Update Frequency
+- Batch Processing
+- Memory Management
+
+[Integration Settings]
+- Spout Configuration
+- Input Handling
+- Output Format
+
++-------------------+
+| UPDATE CYCLE     |
++-------------------+
+Frame Start
+    |
+    +-> Calculate Delta Time
+    |     |
+    |     +-> Process Input
+    |     |     |
+    |     |     +-> Mouse Position
+    |     |     +-> Image Data
+    |     |     +-> Configuration
+    |     |
+    |     +-> Update Physics
+    |           |
+    |           +-> Apply Forces
+    |           +-> Handle Collisions
+    |
+    +-> Update Visuals
+    |     |
+    |     +-> Generate Surfaces
+    |     +-> Update Textures
+    |
+    +-> Render
+          |
+          +-> OpenGL Draw
+          +-> Spout Transfer
+
++----------------------+
+| ERROR HANDLING FLOW  |
++----------------------+
+The system implements comprehensive error handling to maintain stability
+during various failure scenarios. This includes:
+- Graceful degradation of features
+- Automatic recovery attempts
+- Resource cleanup and state preservation
+- Detailed error logging and reporting
+
+[Resource Errors]
+   |
+   +-> Surface Creation
+   |    ├── Retry Creation
+   |    └── Fallback to Default
+   |
+   +-> OpenGL Context
+   |    ├── Context Recovery
+   |    └── Renderer Reset
+   |
+   +-> Spout Connection
+        ├── Reconnection Attempt
+        └── Direct Output Mode
+
+[Runtime Errors]
+   |
+   +-> Physics Update
+   |    ├── State Recovery
+   |    └── Position Reset
+   |
+   +-> Token Update
+   |    ├── Instance Reset
+   |    └── Respawn Process
+   |
+   +-> Configuration
+        ├── Validation
+        └── Default Fallback
+
+[Recovery Actions]
+   |
+   +-> State Preservation
+   |    ├── Checkpoint Save
+   |    └── State Restore
+   |
+   +-> Resource Cleanup
+   |    ├── Memory Release
+   |    └── Handle Cleanup
+   |
+   +-> System Reset
+        ├── Soft Reset
+        └── Full Restart
+
+=====================
+PERFORMANCE CONSIDERATIONS
+=====================
+The framework implements several optimization strategies:
+1. Spatial partitioning for collision detection
+2. Image caching and lazy updates
+3. Batch rendering for efficient GPU utilization
+4. Configurable update frequencies for different subsystems
+
++----------------------+
+| OPERATING MODES      |
++----------------------+
+1. Standalone Mode
+   - Windowed OpenGL application
+   - Local configuration file
+   - Direct mouse interaction
+   - Performance overlay
+   - Debug visualization
+
+2. Isadora Integration
+   - Headless operation
+   - Spout video output
+   - Remote configuration
+   - External mouse input
+   - Performance data export
+
+=====================
+DEBUGGING FEATURES
+=====================
+Visual Debugging:
+- Token Centers
+- Force Vectors
+- Velocity Vectors
+- Collision Boundaries
+- Flocking Radius
+- Separation Lines
+- Dead State Overlay (configured but not implemented)
+
+Performance Monitoring:
+- FPS Counter
+- Token Count
+- Active/Dead Ratio
+- Memory Usage
+- Collision Checks
+- Mouse Interaction Radius
+
+=====================
+EXTENSION GUIDELINES
+=====================
+New features can be added through several mechanisms:
+1. Subclassing Token for custom behaviors
+2. Implementing new rendering backends
+3. Adding custom physics systems
+4. Creating specialized token factories
+
+The modular design ensures that extensions:
+- Cannot compromise core functionality
+- Have access to necessary system state
+- Can be easily enabled/disabled
+- Maintain consistent performance
+
+=====================
+DEBUGGING SUPPORT
+=====================
+The framework includes comprehensive debugging features:
+- Visual overlay system for physics debugging
+- Performance monitoring and reporting
+- State inspection tools
+- Configurable logging levels
+- Configuration audit: logs unknown keys and missing expected settings; overlay shows audit summary when enabled
+
+These tools help developers:
+- Understand system behavior
+- Identify performance bottlenecks
+- Debug physics interactions
+- Monitor resource usage

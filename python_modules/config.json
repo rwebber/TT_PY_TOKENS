@@ -1,0 +1,118 @@
+{
+    "animation": {
+        "bounce_duration_ms": 500.0,
+        "bounce_scale": 1.5,
+        "bounce_threshold": 0.5,
+        "fade_in_duration_ms": 789.0
+    },
+    "debug": {
+        "stats_overlay": true,
+        "show_spatial_grid": true,
+        "debug_manager": true
+    },
+    "init_canvas": {
+        "height": 1080.0,
+        "min_padding": 20.0,
+        "width": 1920.0
+    },
+    "init_token": {
+        "height": 120.0,
+        "width": 120.0
+    },
+    "input": {
+        "hash_input": true,
+        "use_live_image": true,
+        "live_image_update": true,
+        "compute_hash_when_live_update": true
+    },
+    "mouse_force": {
+        "enabled": true,
+        "falloff": "linear",
+        "force_strength": 3.0,
+        "max_distance": 100.0
+    },
+    "timing": {
+        "fade_in_duration_sec": 2.5,
+        "respawn_collision_delay_sec": 10.0,
+        "respawn_delay_sec": 1.5
+    },
+    "physics": {
+        "bounce_factor": 0.8
+    },
+    "tokens": {
+        "collision": {
+            "bounds_scale": 0.5,
+            "elastic": true,
+            "enabled": true,
+            "friction": 0.6000000238418579,
+            "separation_strength": 0.20000000298023224,
+            "strength": 0.20000000298023224,
+            "type": "circle"
+        },
+        "collision_behavior": ["bounce_pop"],
+        "enable_wall_bounce": false,
+        "exit_behavior": ["fade_out"],
+        "facing": "top",
+        "finds_home": {
+            "delay_sec": 3.0,
+            "enabled": true,
+            "strength": 100.0
+        },
+        "flocking": {
+            "alignment": 0.4000000059604645,
+            "cohesion": 0.009999999776482582,
+            "enabled": true,
+            "radius": 149.6,
+            "separation": 1.149999976158142
+        },
+        "hide": false,
+        "look_at_mouse": true,
+        "enable_token_collision": true,
+        "rotation_offset_degrees": 0,
+        "spawn_behavior": ["fade_in"]
+    },
+    "output": {
+        "use_spout": true,
+        "spout_invert": false,
+        "numpy_invert": false
+    },
+    "visual_elements": {
+        "dead_overlay": false,
+        "flocking_radius": {
+            "color": [128, 128, 128],
+            "enabled": true,
+            "thickness": 2.0
+        },
+        "force_vector": {
+            "enabled": true,
+            "color": [255, 128, 0],
+            "thickness": 1.0
+        },
+        "mouse_radius": {
+            "color": [0, 128, 255],
+            "enabled": true,
+            "thickness": 9.0
+        },
+        "separation_lines": {
+            "color": [0, 255, 255],
+            "enabled": true,
+            "thickness": 1.0,
+            "mode": "over"
+        },
+        "token_center": {
+            "color": [255, 255, 255],
+            "enabled": true,
+            "thickness": 6.0
+        },
+        "token_collision_bounds": {
+            "color": [255, 0, 0],
+            "enabled": true,
+            "thickness": 2.0
+        },
+        "velocity_vector": {
+            "color": [255, 255, 0],
+            "enabled": true,
+            "thickness": 3.0
+        }
+    }
+}
